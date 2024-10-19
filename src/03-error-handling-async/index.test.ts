@@ -1,30 +1,40 @@
-// Uncomment the code below and write your tests
-// import { throwError, throwCustomError, resolveValue, MyAwesomeError, rejectCustomError } from './index';
+import {
+  throwError,
+  throwCustomError,
+  resolveValue,
+  MyAwesomeError,
+  rejectCustomError,
+} from './index';
 
 describe('resolveValue', () => {
   test('should resolve provided value', async () => {
-    // Write your test here
+    const str = 'Hello friends';
+    const res = await resolveValue(str);
+    expect(res).toBe(str);
   });
 });
 
 describe('throwError', () => {
   test('should throw error with provided message', () => {
-    // Write your test here
+    const str = 'You are not authorized';
+    expect(() => throwError(str)).toThrow(new Error(str));
   });
 
   test('should throw error with default message if message is not provided', () => {
-    // Write your test here
+    expect(() => throwError()).toThrow(new Error('Oops!'));
   });
 });
 
 describe('throwCustomError', () => {
   test('should throw custom error', () => {
-    // Write your test here
+    const myError = new MyAwesomeError();
+    expect(() => throwCustomError()).toThrow(myError);
   });
 });
 
 describe('rejectCustomError', () => {
   test('should reject custom error', async () => {
-    // Write your test here
+    const myError = new MyAwesomeError();
+    expect(() => rejectCustomError()).rejects.toThrow(myError);
   });
 });
